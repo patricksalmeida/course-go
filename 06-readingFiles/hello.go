@@ -3,8 +3,10 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -84,7 +86,6 @@ func readSitesOfFile() []string {
 	var sites []string
 
 	file, err := os.Open("sites.txt")
-	// file, err := ioutil.ReadFile("sites.txt")
 
 	if err != nil {
 		fmt.Println("Ocorreu um erro:", err)
@@ -92,13 +93,18 @@ func readSitesOfFile() []string {
 
 	reader := bufio.NewReader(file)
 
-	line, err := reader.ReadString('\n')
+	for {
+		line, err := reader.ReadString('\n')
+		line = strings.TrimSpace(line)
 
-	if err != nil {
-		fmt.Println("Ocorreu um erro:", err)
+		sites = append(sites, line)
+
+		if err == io.EOF {
+			break
+		}
 	}
 
-	fmt.Println(line)
+	file.Close()
 
 	return sites
 }
