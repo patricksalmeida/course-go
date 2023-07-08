@@ -128,4 +128,6 @@ func registerLog(site string, status bool) {
 	}
 
 	fmt.Println(file)
+
+	file.Close()
 }
