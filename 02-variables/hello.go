@@ -17,7 +17,6 @@ func main() {
 
 	var command int
 
-	// fmt.Scanf("%d", &command)
 	fmt.Scan(&command)
 
 	fmt.Println("O endereço da minha variável command é", &command)
