@@ -1,0 +1,7 @@
+https://random-status-code.herokuapp.com
+https://www.alura.com.br
+https://www.caelum.com.br
+https://httpstat.us/403
+https://httpstat.us/502
+https://httpstat.us/200
+https://httpstat.us/201
