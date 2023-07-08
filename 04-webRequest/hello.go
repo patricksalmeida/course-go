@@ -9,21 +9,23 @@ import (
 func main() {
 	showIntroduction()
 
-	showMenu()
+	for {
+		showMenu()
 
-	command := readUserCommand()
+		command := readUserCommand()
 
-	switch command {
-	case 1:
-		startMonitoring()
-	case 2:
-		fmt.Println("Exibindo logs...")
-	case 0:
-		fmt.Println("Saindo do programa")
-		os.Exit(0)
-	default:
-		fmt.Println("Não conheço este comando")
-		os.Exit(-1)
+		switch command {
+		case 1:
+			startMonitoring()
+		case 2:
+			fmt.Println("Exibindo logs...")
+		case 0:
+			fmt.Println("Saindo do programa")
+			os.Exit(0)
+		default:
+			fmt.Println("Não conheço este comando")
+			os.Exit(-1)
+		}
 	}
 }
 
@@ -53,9 +55,14 @@ func readUserCommand() int {
 func startMonitoring() {
 	fmt.Println("Monitorando...")
 
-	site := "https://www.alura.com.br"
+	// site := "https://www.alura.com.br"
+	site := "https://random-status-code.herokuapp.com"
 
 	response, _ := http.Get(site)
 
-	fmt.Println(response)
+	if response.StatusCode == 200 {
+		fmt.Println("Site:", site, "foi carregado com sucesso!")
+	} else {
+		fmt.Println("Site:", site, "está com problemas. Status code:", response.StatusCode)
+	}
 }
