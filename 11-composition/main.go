@@ -18,8 +18,13 @@ func main() {
 		Titular:       clienteBruno,
 		NumeroAgencia: 123,
 		NumeroConta:   123456,
-		Saldo:         100.0,
 	}
 
-	fmt.Println(contaDoBruno)
+	contaDoBruno.Depositar(100.0)
+
+	fmt.Println(contaDoBruno.ObterSaldo())
+
+	contaDoBruno.Sacar(50.)
+
+	fmt.Println(contaDoBruno.ObterSaldo())
 }
