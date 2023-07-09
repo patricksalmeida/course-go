@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"./contas"
+	"github.com.br/patricksalmeida/course-go/10-visibility/contas"
 )
 
 func main() {
