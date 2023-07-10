@@ -5,9 +5,14 @@ import (
 	"net/http"
 
 	"github.com.br/patricksalmeida/course-go/14-restApi/controllers"
+	"github.com/gorilla/mux"
 )
 
 func HandleRequest() {
-	http.HandleFunc("/", controllers.Home)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	r := mux.NewRouter()
+
+	r.HandleFunc("/", controllers.Home)
+	r.HandleFunc("/personalidades", controllers.TodasPersonalidades)
+
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
