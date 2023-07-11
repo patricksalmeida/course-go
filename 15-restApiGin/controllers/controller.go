@@ -14,14 +14,6 @@ func ExibeTodosOsAlunos(c *gin.Context) {
 	c.JSON(200, alunos)
 }
 
-func Saudacao(c *gin.Context) {
-	nome := c.Params.ByName("nome")
-
-	c.JSON(200, gin.H{
-		"API diz": "E ai " + nome + ", tudo beleza?",
-	})
-}
-
 func CriarNovoAluno(c *gin.Context) {
 	var aluno models.Aluno
 
@@ -36,4 +28,11 @@ func CriarNovoAluno(c *gin.Context) {
 	database.DB.Create(&aluno)
 
 	c.JSON(http.StatusCreated, aluno)
+}
+
+func BuscarAlunoPorId(c *gin.Context) {
+	var aluno models.Aluno
+	id := c.Params.ByName("id")
+	database.DB.First(&aluno, id)
+	c.JSON(http.StatusOK, aluno)
 }
